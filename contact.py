@@ -1,5 +1,3 @@
-# contact.py - Contains the Contact class to store individual contact details.
-
 class Contact:
     def __init__(self, name, phone, email):
         """

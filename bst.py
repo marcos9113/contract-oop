@@ -1,5 +1,3 @@
-# bst.py - Contains the BST (Binary Search Tree) implementation and contact management logic.
-
 from contact import Contact
 
 class Node:
@@ -126,7 +124,7 @@ class BST:
             print(current.contact)
             self._display(current.right)
 
-    # Method to find contacts matching a substring (partial search)
+    # Partial search
     def partial_search(self, substring):
         """
         Find contacts whose name contains the substring.

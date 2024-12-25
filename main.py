@@ -37,10 +37,10 @@ def process_input_file(filename):
     with open(filename, 'r') as file:
         for line in file:
             line = line.strip()
-            if line and not line.startswith("---"):  # Skip empty lines and section headers
+            if line and not line.startswith("---"):  
                 execute_command(bst, line)
 
-# Allow partial search (e.g., find all contacts starting with a certain letter or substring)
+# Allow partial search 
 def partial_search(bst, substring):
     contacts = bst.partial_search(substring)
     if contacts:
