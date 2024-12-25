@@ -1,0 +1,31 @@
+--- Example 1: Adding Contacts ---
+INSERT John Doe 1234567890 john.doe@email.com
+INSERT Jane Smith 0987654321 jane.smith@email.com
+INSERT Alice Cooper 1122334455 alice.cooper@email.com
+INSERT Bob Marley 4455667788 bob.marley@email.com
+INSERT Charlie Brown 6677889900 charlie.brown@email.com
+
+--- Example 2: Searching for Contacts ---
+SEARCH Alice Cooper
+SEARCH John Doe
+SEARCH Bob Marley
+SEARCH David Beckham
+
+--- Example 3: Updating Contacts ---
+UPDATE John Doe 9876543210 john.doe@newemail.com
+UPDATE Alice Cooper 5566778899 alice.cooper@newemail.com
+UPDATE David Beckham 2233445566 david.beckham@email.com
+
+--- Example 4: Deleting Contacts ---
+DELETE Alice Cooper
+DELETE Bob Marley
+DELETE David Beckham
+
+--- Example 5: Duplicate Entries ---
+INSERT John Doe 1234567890 john.doe@email.com
+INSERT John Doe 2233445566 john.doe@anotheremail.com
+
+--- Example 6: Empty Tree Operations ---
+SEARCH John Doe
+UPDATE Jane Smith 2223334444 jane.smith@updatedemail.com
+DELETE Alice Cooper
