@@ -125,3 +125,40 @@ class BST:
             self._display(current.left)
             print(current.contact)
             self._display(current.right)
+
+    # Method to find contacts matching a substring (partial search)
+    def partial_search(self, substring):
+        """
+        Find contacts whose name contains the substring.
+        """
+        results = []
+        self._partial_search(self.root, substring, results)
+        return results
+
+    def _partial_search(self, current, substring, results):
+        """
+        Helper method for partial search.
+        """
+        if current:
+            if substring.lower() in current.contact.name.lower():
+                results.append(current.contact)
+            self._partial_search(current.left, substring, results)
+            self._partial_search(current.right, substring, results)
+
+    # Method to get contacts sorted alphabetically by name
+    def get_sorted_contacts(self):
+        """
+        Get a list of contacts sorted by name.
+        """
+        sorted_contacts = []
+        self._in_order_traversal(self.root, sorted_contacts)
+        return sorted_contacts
+
+    def _in_order_traversal(self, current, sorted_contacts):
+        """
+        Helper method to perform an in-order traversal and collect contacts.
+        """
+        if current:
+            self._in_order_traversal(current.left, sorted_contacts)
+            sorted_contacts.append(current.contact)
+            self._in_order_traversal(current.right, sorted_contacts)

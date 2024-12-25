@@ -40,6 +40,32 @@ def process_input_file(filename):
             if line and not line.startswith("---"):  # Skip empty lines and section headers
                 execute_command(bst, line)
 
+# Allow partial search (e.g., find all contacts starting with a certain letter or substring)
+def partial_search(bst, substring):
+    contacts = bst.partial_search(substring)
+    if contacts:
+        print(f"\nFound contacts starting with '{substring}':")
+        for contact in contacts:
+            print(contact)
+    else:
+        print(f"\nNo contacts found starting with '{substring}'.")
+
+# Export contacts to a file in alphabetical order
+def export_contacts(bst, filename):
+    with open(filename, 'w') as file:
+        contacts = bst.get_sorted_contacts()
+        for contact in contacts:
+            file.write(f"{contact.name} {contact.phone} {contact.email}\n")
+    print(f"\nContacts have been exported to {filename}.")
+
+# Import contacts from a file to populate the BST
+def import_contacts(bst, filename):
+    with open(filename, 'r') as file:
+        for line in file:
+            name, phone, email = line.strip().split()
+            bst.insert(Contact(name, phone, email))
+    print(f"\nContacts have been imported from {filename}.")
+
 # Menu for interactive usage
 def interactive_menu():
     bst = BST()
@@ -50,8 +76,11 @@ def interactive_menu():
         print("3. Update Contact")
         print("4. Delete Contact")
         print("5. Display All Contacts")
-        print("6. Process Commands from File")
-        print("7. Exit")
+        print("6. Partial Search")
+        print("7. Export Contacts to File")
+        print("8. Import Contacts from File")
+        print("9. Process Commands from File")
+        print("10. Exit")
         
         choice = input("Enter your choice: ")
         
@@ -88,10 +117,22 @@ def interactive_menu():
             bst.display()
         
         elif choice == "6":
+            substring = input("Enter the starting substring for partial search: ")
+            partial_search(bst, substring)
+        
+        elif choice == "7":
+            filename = input("Enter the filename to export contacts: ")
+            export_contacts(bst, filename)
+        
+        elif choice == "8":
+            filename = input("Enter the filename to import contacts from: ")
+            import_contacts(bst, filename)
+        
+        elif choice == "9":
             filename = input("Enter the filename to process commands from: ")
             process_input_file(filename)
         
-        elif choice == "7":
+        elif choice == "10":
             print("\nExiting... Goodbye!\n")
             break
         
